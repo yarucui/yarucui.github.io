@@ -3,9 +3,44 @@ import MainLayout from '../layouts/Layout.astro';
 ---
 <MainLayout title="Home">
     <div style="text-align: center;">
-        <div style="width: 120px; height: 120px; border: 1px solid var(--accent); border-radius: 50%; margin: 0 auto 2rem;"></div>
-		<h1 style="font-family: 'Cormorant Garamond', serif; font-size: 3rem;">Yaru Cui</h1>
-        <p style="color: #888;">PhD Applicant · Logic & Aesthetics</p>
+        <div class="profile-wrapper">
+            <img src="/profile.jpg" alt="Yaru Cui" class="profile-img" />
+        </div>
+        
+        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; margin-top: 1rem;">Yaru Cui</h1>
+        <p style="color: #888; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem;">PhD Applicant · Logic & Aesthetics</p>
     </div>
 </MainLayout>
 
+<style>
+    .profile-wrapper {
+        width: 180px; /* Slightly larger for better presence */
+        height: 180px;
+        margin: 0 auto 2rem;
+        border-radius: 50%;
+        border: 1px solid var(--accent);
+        overflow: hidden; /* This crops the image into the circle */
+        transition: 0.5s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .profile-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Keeps aspect ratio while filling the circle */
+        filter: grayscale(20%); Fits the "Noir" theme
+        transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .profile-wrapper:hover {
+        border-color: var(--accent);
+        box-shadow: 0 0 20px rgba(212, 77, 125, 0.2);
+    }
+
+    .profile-wrapper:hover .profile-img {
+        filter: grayscale(0%);
+        transform: scale(1.05);
+    }
+</style>
