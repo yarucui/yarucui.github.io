@@ -84,6 +84,8 @@ const { title } = Astro.props;
 	--accent: #d44d7d;
 	--border: rgba(212,77,125,0.2);
 	--dot: rgba(212,77,125,0.08);
+
+	--card-bg: #ffffffee;
 }
 
 /* =========================
@@ -194,4 +196,33 @@ footer {
 	opacity: 1;
 	color: var(--accent);
 }
+
+/* =========================
+   PROJECT CARD
+========================= */
+
+.project-card {
+	background: var(--card-bg, #111);
+	border: 1px solid var(--border);
+	border-radius: 16px;
+	padding: 1.5rem;
+	transition: all 0.35s ease;
+}
+
+.project-card:hover {
+	transform: translateY(-6px);
+}
+
+/* Light mode enhancement */
+:root[data-theme="light"] .project-card {
+	background: var(--card-bg);
+	border: 1px solid rgba(212, 77, 125, 0.1);
+	box-shadow: 0 15px 35px rgba(212, 77, 125, 0.05);
+}
+
+:root[data-theme="light"] .project-card:hover {
+	box-shadow: 0 20px 50px rgba(212, 77, 125, 0.1);
+	border-color: var(--accent);
+}
+
 </style>
