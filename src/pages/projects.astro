@@ -1,6 +1,62 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
+import MainLayout from '/src/layouts/Layout.astro';
 ---
-<MainLayout title="Projects">
-    <h1 style="font-family: 'Cormorant Garamond', serif;">Projects</h1>
-    </MainLayout>
+<MainLayout title="Selected Projects">
+    <div class="header">
+        <h1 class="serif">Selected Research</h1>
+        <p class="subtitle">A fusion of computational logic and visual aesthetics.</p>
+    </div>
+
+    <div class="project-grid">
+        <div class="project-card">
+            <div class="glass-overlay"></div>
+            <div class="content">
+                <span class="category">ML Research</span>
+                <h3>Latent Space Aesthetics</h3>
+                <p>Investigating the geometric structure of generative models.</p>
+                <a href="#" class="view-link">Case Study →</a>
+            </div>
+        </div>
+    </div>
+</MainLayout>
+
+<style>
+    .header { margin-bottom: 4rem; text-align: center; }
+    .serif { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 500; }
+    .subtitle { color: #666; font-style: italic; letter-spacing: 1px; }
+
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2.5rem;
+        width: 100%;
+    }
+
+    .project-card {
+        position: relative;
+        background: #111;
+        border: 1px solid #222;
+        padding: 2.5rem;
+        transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        overflow: hidden;
+    }
+
+    .project-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(255, 45, 117, 0.05);
+    }
+
+    .glass-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(135deg, rgba(255,45,117,0.03) 0%, transparent 100%);
+        pointer-events: none;
+    }
+
+    .category { color: var(--accent); font-size: 0.75rem; font-weight: bold; letter-spacing: 2px; }
+    h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin: 1rem 0; }
+    p { color: #888; line-height: 1.6; font-size: 0.95rem; margin-bottom: 2rem; }
+    .view-link { color: var(--text); text-decoration: none; font-size: 0.8rem; border-bottom: 1px solid #333; padding-bottom: 4px; transition: 0.3s; }
+    .view-link:hover { border-color: var(--accent); color: var(--accent); }
+</style>
