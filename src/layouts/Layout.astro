@@ -76,17 +76,25 @@ const { title } = Astro.props;
 	--dot: rgba(255,77,128,0.05);
 }
 
+
 :root[data-theme="light"] {
-	--bg: #fff8f1;
-	/* --text: #2d2327; */
-	--text: #3c5365;
+	--bg: #F4F6F8;
+	--text: #3c5365;             /* 深蓝灰文字 */
+	--muted: #6C7480;            /* 次级文字 */
 
 	--accent: #d44d7d;
 	--border: rgba(212,77,125,0.2);
 	--dot: rgba(212,77,125,0.08);
 
 	--card-bg: #ffffffee;
+	--card-border: rgba(40,50,70,0.06);
+ 	--card-shadow: 0 12px 30px rgba(40,50,70,0.06);
+	
+	/* Decorative */
+	--dot: rgba(124,127,163,0.05);
+  --border: rgba(40,50,70,0.08);
 }
+
 
 /* =========================
    GLOBAL
@@ -211,9 +219,8 @@ footer {
 
 .project-card:hover {
 	transform: translateY(-6px);
-}
+} 
 
-/* Light mode enhancement */
 :root[data-theme="light"] .project-card {
 	background: var(--card-bg);
 	border: 1px solid rgba(212, 77, 125, 0.1);

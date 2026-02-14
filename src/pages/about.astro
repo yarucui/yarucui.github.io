@@ -1,57 +1,48 @@
 ---
 import MainLayout from '/src/layouts/Layout.astro';
+import aboutData from '../data/about.json'; // Import your data
 ---
-<MainLayout title="About Me">
+<MainLayout title="About">
     <div class="about-container">
-        <section class="intro">
-            <div class="quote">
-                "Finding the intersection of rigorous logic and fluid aesthetics."
-            </div>
-            <p>
-                你好！我是 [你的名字]。目前我正在申请 [专业名] 方向的 PhD。
-                我的研究热情源于对 [某个技术领域] 的探索，同时我坚持用审美的方式去理解代码和公式。
-            </p>
-        </section>
+        <h1 class="serif">About Me</h1>
+        
+        <p class="bio-statement">{aboutData.statement}</p>
 
-        <div class="details-grid">
-            <div class="box">
-                <h3>Education</h3>
-                <p><strong>Master of Science</strong>, Your University <br> <small>2022 - 2024</small></p>
-            </div>
-            <div class="box">
-                <h3>Research Interests</h3>
+        <div class="grid">
+            <section>
+                <h3 class="serif">Education</h3>
+                {aboutData.education.map(edu => (
+                    <div class="item">
+                        <strong>{edu.degree}</strong>
+                        <span>{edu.school}, {edu.year}</span>
+                    </div>
+                ))}
+            </section>
+
+            <section>
+                <h3 class="serif">Research Interests</h3>
                 <ul>
-                    <li>Deep Learning & Computer Vision</li>
-                    <li>Digital Humanities</li>
-                    <li>Human-Centered AI</li>
+                    {aboutData.researchInterests.map(interest => (
+                        <li>{interest}</li>
+                    ))}
                 </ul>
-            </div>
+            </section>
         </div>
+
+        <p class="personal-note"><em>{aboutData.personal}</em></p>
     </div>
 </MainLayout>
 
 <style>
-    .about-container { max-width: 700px; animation: fadeIn 1s ease-out; }
-    .quote {
-        font-family: 'Cormorant Garamond', serif;
-        font-style: italic;
-        font-size: 1.8rem;
-        color: var(--accent);
-        margin-bottom: 2rem;
-        line-height: 1.2;
-    }
-    p { line-height: 1.8; color: #bbb; font-weight: 300; }
-    .details-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        margin-top: 3rem;
-        border-top: 0.5px solid #333;
-        padding-top: 2rem;
-    }
-    h3 { font-family: 'Cormorant Garamond', serif; color: var(--text); font-size: 1.4rem; }
-    ul { padding: 0; list-style: none; color: #888; font-size: 0.9rem; }
-    li::before { content: "→ "; color: var(--accent); }
-    small { color: #555; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .about-container { max-width: 700px; animation: fadeIn 1s ease; }
+    .serif { font-family: 'Cormorant Garamond', serif; color: var(--accent); }
+    .bio-statement { line-height: 1.8; color: #888; margin-bottom: 3rem; }
+    
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .item { display: flex; flex-direction: column; margin-bottom: 1rem; font-size: 0.9rem; }
+    
+    ul { padding: 0; list-style: none; font-size: 0.9rem; color: #888; }
+    li::before { content: "✦ "; color: var(--accent); }
+
+    .personal-note { border-top: 1px solid var(--border); padding-top: 2rem; color: #666; }
 </style>
