@@ -3,7 +3,9 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
-  markdown: {
+  site: 'https://yarucui.github.io', 
+  base: '/my-aesthetic-site/', // Change this to '/repo-name/' ONLY if your repo is NOT 'username.github.io'
+  // markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
   },
