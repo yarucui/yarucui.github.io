@@ -1,3 +1,9 @@
+---
+title: "Watermarking of language model output"
+pubDate: 2026-02-01
+description: "Exploring a watermark method for Language model output."
+tags: ["AI safety"]
+---
 # Watermarking of language model output
 
 这篇 paper 在 **AI Safety 圈子** 影响力很大
