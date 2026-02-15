@@ -1,0 +1,42 @@
+---
+import MainLayout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// 生成所有 notes 的静态路由
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  return notes.map((note) => ({
+    params: { slug: note.slug },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await note.render();
+---
+
+<MainLayout title={note.data.title}>
+  <article class="note">
+    <header class="note-header">
+      <h1>{note.data.title}</h1>
+      <p class="meta">
+        {note.data.pubDate.toISOString().slice(0,10)}
+        {note.data.tags?.length ? ` · ${note.data.tags.join(' / ')}` : ''}
+      </p>
+    </header>
+
+    <div class="note-content">
+      <Content />
+    </div>
+  </article>
+</MainLayout>
+
+<style>
+  /* 不强行改你整体风格：只给内容一个可读的排版 */
+  .note { width: 100%; max-width: 800px; }
+  .note-header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 500; margin: 0 0 0.5rem; }
+  .meta { opacity: 0.7; font-size: 0.9rem; margin: 0 0 2rem; }
+  .note-content :global(p) { line-height: 1.8; }
+  .note-content :global(h2) { margin-top: 2rem; }
+  .note-content :global(a) { color: var(--accent); }
+</style>

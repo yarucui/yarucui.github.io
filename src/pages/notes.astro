@@ -1,33 +1,47 @@
 ---
-import { getCollection } from 'astro:content';
 import MainLayout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
-const allNotes = await getCollection('notes');
-// 按日期排序
-const sortedNotes = allNotes.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const notes = await getCollection('notes');
+
+// 按日期倒序（最新在上）
+notes.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+// 格式化日期成你原来的样式：YYYY.MM.DD
+const fmt = (d: Date) => {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}.${m}.${day}`;
+};
 ---
+
 <MainLayout title="Study Notes">
-    <h1 class="serif">Academic Archive</h1>
-    <div class="notes-list">
-        {sortedNotes.map(note => (
-            <a href={`/notes/${note.slug}`} class="note-item">
-                <span class="date">{note.data.pubDate.toLocaleDateString()}</span>
-                <h3>{note.data.title}</h3>
-                <p>{note.data.description}</p>
-            </a>
-        ))}
-    </div>
+  <div class="notes-list">
+    {notes.map((note) => (
+      <div class="note-item">
+        <span class="date">{fmt(note.data.pubDate)}</span>
+        <a href={`/notes/${note.slug}/`}>{note.data.title}</a>
+      </div>
+    ))}
+  </div>
 </MainLayout>
 
 <style>
-    .notes-list { margin-top: 3rem; width: 100%; }
-    .note-item { 
-        display: block; padding: 2rem 0; 
-        border-bottom: 1px solid var(--border);
-        text-decoration: none; color: inherit;
-        transition: 0.3s;
-    }
-    .note-item:hover h3 { color: var(--accent); }
-    .date { font-size: 0.8rem; color: #666; }
-    h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin: 0.5rem 0; }
+  .notes-list { width: 100%; max-width: 600px; }
+  .note-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2rem 0;
+    border-bottom: 0.5px solid #222;
+    transition: 0.3s;
+  }
+  .note-item:hover a { color: var(--accent); }
+  .date { font-size: 0.8rem; color: #555; font-family: 'Inter', sans-serif; }
+  a {
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+  }
 </style>
