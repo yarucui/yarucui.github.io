@@ -1,9 +1,9 @@
 {
-    "statement": "I am a student researcher ",
-    "education": [
-      { "degree": "M.Sc. in Artificial Intelligence", "school": "Bocconi University", "year": "2026" },
-      { "degree": "B.Sc. in Information System", "school": "Shanghai International Studies University", "year": "2024" }
-    ],
-    "researchInterests": ["Generative Models", "LLM", "AI security"],
-    "personal": "When not in the lab, I document light and shadow through film photography."
-  }
+  "statement": "I'm a student researcher interested in how large language models work — and how to make them better.\n\nI have hands-on experience across the full LLM pipeline, including pretraining, SFT, and RLHF. I've built RAG systems and worked on agentic reinforcement learning projects, exploring how models reason, use tools, and adapt through feedback.\n\nMy current focus is LLM reasoning: understanding multi-step thinking, failure modes, and ways to improve reliability. Recently, I've also begun exploring AI security, particularly watermarking techniques for large language models.\n\nI'm driven by building systems, experimenting, and turning practical experience into deeper research questions.",
+  "education": [
+    { "degree": "M.Sc. in Artificial Intelligence", "school": "Bocconi University", "year": "2026" },
+    { "degree": "B.Sc. in Information System", "school": "Shanghai International Studies University", "year": "2024" }
+  ],
+  "researchInterests": ["Generative Models", "LLM", "AI security"],
+  "personal": "When not in the lab, I document light and shadow through film photography."
+}
