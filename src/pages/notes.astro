@@ -1,34 +1,33 @@
 ---
+import { getCollection } from 'astro:content';
 import MainLayout from '../layouts/Layout.astro';
+
+const allNotes = await getCollection('notes');
+// 按日期排序
+const sortedNotes = allNotes.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 <MainLayout title="Study Notes">
+    <h1 class="serif">Academic Archive</h1>
     <div class="notes-list">
-        <div class="note-item">
-            <span class="date">2026.02.14</span>
-            <a href="#">深度学习数学基础（第一部分）：线性代数</a>
-        </div>
-        <div class="note-item">
-            <span class="date">2026.02.10</span>
-            <a href="#">读论文笔记：Attention Is All You Need</a>
-        </div>
+        {sortedNotes.map(note => (
+            <a href={`/notes/${note.slug}`} class="note-item">
+                <span class="date">{note.data.pubDate.toLocaleDateString()}</span>
+                <h3>{note.data.title}</h3>
+                <p>{note.data.description}</p>
+            </a>
+        ))}
     </div>
 </MainLayout>
 
 <style>
-    .notes-list { width: 100%; max-width: 600px; }
-    .note-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 1.2rem 0;
-        border-bottom: 0.5px solid #222;
+    .notes-list { margin-top: 3rem; width: 100%; }
+    .note-item { 
+        display: block; padding: 2rem 0; 
+        border-bottom: 1px solid var(--border);
+        text-decoration: none; color: inherit;
         transition: 0.3s;
     }
-    .note-item:hover a { color: var(--accent); }
-    .date { font-size: 0.8rem; color: #555; font-family: 'Inter', sans-serif; }
-    a {
-        color: var(--text);
-        text-decoration: none;
-        font-family: 'Inter', sans-serif;
-        font-weight: 300;
-    }
+    .note-item:hover h3 { color: var(--accent); }
+    .date { font-size: 0.8rem; color: #666; }
+    h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin: 0.5rem 0; }
 </style>
