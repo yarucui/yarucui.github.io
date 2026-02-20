@@ -5,8 +5,6 @@ description: "This paper introduces speculative decoding, a distribution-preserv
 tags: ["LLM inference acceleration", "Speculative Decoding"]
 ---
 
-# Fast Inference from Transformers via Speculative Decoding
-
 ### Algorithm SD
 
 ![image-20260218204024020](C:\Users\czw67\AppData\Roaming\Typora\typora-user-images\image-20260218204024020.png)

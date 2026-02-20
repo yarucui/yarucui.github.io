@@ -4,7 +4,6 @@ pubDate: 2026-02-11
 description: "This paper investigates the verification mechanism in Speculative Decoding and identifies alignment-based verification scheme as the primary bottleneck to speedup, and introduces correctness-aware verification scheme to overcome this limitation"
 tags: ["Speculative Decoding", "LLM inference acceleration"]
 ---
-# JUDGE DECODING: FASTER SPECULATIVE SAMPLING REQUIRES GOING BEYOND MODEL ALIGNMENT
 
 #### Motivation in this paper:
 
